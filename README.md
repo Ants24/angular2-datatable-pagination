@@ -7,7 +7,7 @@ fork from [angualr2-datatable](https://github.com/mariuszfoltak/angular2-datatab
 [![npm downloads](https://img.shields.io/npm/dm/angular2-datatable-pagination.svg)](https://npmjs.org/angular2-datatable-pagination)
 ## Demo
 
-Check [live demo](http://plnkr.co/edit/Tj1IJqpXj1Bj68LtzmGT?p=preview) in plunker
+Check [live demo](http://plnkr.co/edit/4AERPpfUDIvy6W1pwdCd?p=preview) in plunker
 
 ## Installation
 
