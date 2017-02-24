@@ -1,0 +1,72 @@
+{
+  "name": "angular2-datatable-pagination",
+  "version": "0.0.1",
+  "description": "DataTable component for Angular2 framework",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "rimraf lib",
+    "build": "ngc -p src",
+    "start": "http-server -c-1 -o -p 8875 .",
+    "pretest": "npm run build",
+    "test": "karma start karma.conf.js",
+    "posttest": "node_modules/.bin/remap-istanbul -i coverage/coverage-final.json -o coverage -t html",
+    "coverage-remap": "remap-istanbul -i coverage/coverage-final.json -o coverage/coverage-remapped.lcov -t lcovonly",
+    "coverage": "http-server -c-1 -o -p 9875 ./coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ants24/angular2-datatable-pagination"
+  },
+  "keywords": [
+    "angular",
+    "angularjs",
+    "angular2",
+    "ng",
+    "ng2",
+    "table",
+    "pagination",
+    "sort",
+    "sorting"
+  ],
+  "author": "chen.kiven@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ants24/angular2-datatable-pagination/issues"
+  },
+  "homepage": "https://github.com/Ants24/angular2-datatable-pagination#readme",
+  "devDependencies": {
+    "@angular/core": "^2.1.0",
+    "@angular/compiler": "^2.1.0",
+    "@angular/common": "^2.1.0",
+    "@angular/platform-browser": "^2.1.0",
+    "@angular/platform-browser-dynamic": "^2.1.0",
+    "@angular/compiler-cli": "^2.1.0",
+    "core-js": "^2.4.1",
+    "http-server": "^0.9.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "lodash": "^4.0.0",
+    "phantomjs-prebuilt": "^2.1.7",
+    "remap-istanbul": "^0.7.0",
+    "rxjs": "5.0.0-beta.12",
+    "systemjs": "^0.19.39",
+    "typescript": "~2.1.0",
+    "zone.js": "^0.6.25",
+    "rimraf": "^2.5.4",
+    "@types/lodash": "^4.14.37",
+    "@types/jasmine": "^2.5.35"
+  },
+  "dependencies": {
+    "@angular/core": "^2.0.0",
+    "@angular/common": "^2.0.0",
+    "@angular/platform-browser": "^2.0.0",
+    "lodash": "^4.0.0"
+  },
+  "peerDependencies": {
+    "rxjs": "^5.0.0-beta.12"
+  }
+}

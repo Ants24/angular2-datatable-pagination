@@ -1,0 +1,54 @@
+
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+
+        <div class="page-header">
+            <h1>
+                <span>Angular2 DataTable component for server pagination</span><br/>
+                <small>fork from <a href="https://github.com/mariuszfoltak/angular2-datatable">mariuszfoltak</a></small>
+            </h1>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">User information</div>
+
+            <table class="table table-striped" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
+                [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder" [mfActivePage]="activePage" (mfOnPageChange)="onPageChange($event)"
+                [mfIsServerPagination]="true" [(mfAmountOfRows)]="itemsTotal" (mfSortOrderChange)="onSortOrder($event)">
+                <thead>
+                    <tr>
+                        <th style="width: 10%"></th>
+                        <th style="width: 20%">
+                            <mfDefaultSorter by="name">Name</mfDefaultSorter>
+                        </th>
+                        <th style="width: 40%">
+                            <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                        </th>
+                        <th style="width: 10%">
+                            <mfDefaultSorter by="age">Age</mfDefaultSorter>
+                        </th>
+                        <th style="width: 20%">
+                            <mfDefaultSorter [by]="sortByWordLength">City</mfDefaultSorter>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of mf.data">
+                        <td>
+                            <button (click)="remove(item)" class="btn btn-danger">x</button>
+                        </td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.email}}</td>
+                        <td class="text-right">{{item.age}}</td>
+                        <td>{{item.city | uppercase}}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
