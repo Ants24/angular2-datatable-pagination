@@ -26,7 +26,7 @@ export interface DataEvent {
 })
 export class NG2DataTable implements OnChanges, DoCheck {
 
-    private diff: IterableDiffer;
+    private diff: IterableDiffer<any>;
     @Input("mfData") public inputData: any[] = [];
 
     @Input("mfSortBy") public sortBy: string | string[] = "";
@@ -91,8 +91,7 @@ export class NG2DataTable implements OnChanges, DoCheck {
 
     private calculateNewActivePage(previousRowsOnPage: number, currentRowsOnPage: number): number {
         let firstRowOnPage = (this.activePage - 1) * previousRowsOnPage + 1;
-        let newActivePage = Math.ceil(firstRowOnPage / currentRowsOnPage);
-        return newActivePage;
+        return Math.ceil(firstRowOnPage / currentRowsOnPage);
     }
 
     private recalculatePage() {
@@ -158,7 +157,7 @@ export class NG2DataTable implements OnChanges, DoCheck {
 
         let offset = (this.activePage - 1) * this.rowsOnPage;
         let data = this.inputData;
-        var sortBy = this.sortBy;
+        let sortBy = this.sortBy;
         if (!this.isServerPaginationage) {
             if (typeof sortBy === 'string' || sortBy instanceof String) {
                 data = _.orderBy(data, this.caseInsensitiveIteratee(<string>sortBy), [this.sortOrder]);
@@ -172,7 +171,7 @@ export class NG2DataTable implements OnChanges, DoCheck {
 
     private caseInsensitiveIteratee(sortBy: string) {
         return (row: any): any => {
-            var value = row;
+            let value = row;
             for (let sortByProperty of sortBy.split('.')) {
                 if (value) {
                     value = value[sortByProperty];
