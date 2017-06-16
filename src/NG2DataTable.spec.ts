@@ -29,13 +29,13 @@ describe("DataTable directive tests", ()=> {
             {id: 5, name: 'Ðrone'},
             {id: 4, name: 'Ananas'}
         ];
-        datatable.ngOnChanges({inputData: new SimpleChange(null, datatable.inputData)});
+        datatable.ngOnChanges({inputData: new SimpleChange(null, datatable.inputData, true)});
     });
 
     describe("initializing", ()=> {
 
         it("data should be empty array if inputData is undefined or null", () => {
-            datatable.ngOnChanges({inputData: new SimpleChange(null, null)});
+            datatable.ngOnChanges({inputData: new SimpleChange(null, null, true)});
             datatable.ngDoCheck();
             expect(datatable.data).toEqual([]);
         });
@@ -109,7 +109,7 @@ describe("DataTable directive tests", ()=> {
             });
 
             datatable.rowsOnPage = 3;
-            datatable.ngOnChanges({rowsOnPage: new SimpleChange(2, 3)});
+            datatable.ngOnChanges({rowsOnPage: new SimpleChange(2, 3, true)});
             datatable.ngDoCheck();
             expect(datatable.data).toEqual([{id: 3, name: 'banana'}, {id: 1, name: 'Duck'}, {id: 2, name: 'ącki'}]);
 
@@ -129,8 +129,8 @@ describe("DataTable directive tests", ()=> {
             datatable.sortBy = "id";
             datatable.sortOrder = "asc";
             datatable.ngOnChanges({
-                sortBy: new SimpleChange(null, datatable.sortBy),
-                sortOrder: new SimpleChange(null, datatable.sortOrder)
+                sortBy: new SimpleChange(null, datatable.sortBy, true ),
+                sortOrder: new SimpleChange(null, datatable.sortOrder, true)
             });
             datatable.ngDoCheck();
             expect(datatable.data).toEqual([
@@ -152,8 +152,8 @@ describe("DataTable directive tests", ()=> {
             datatable.sortBy = "id";
             datatable.sortOrder = "desc";
             datatable.ngOnChanges({
-                sortBy: new SimpleChange(null, datatable.sortBy),
-                sortOrder: new SimpleChange(null, datatable.sortOrder)
+                sortBy: new SimpleChange(null, datatable.sortBy, true),
+                sortOrder: new SimpleChange(null, datatable.sortOrder, true)
             });
             datatable.ngDoCheck();
 
@@ -168,7 +168,7 @@ describe("DataTable directive tests", ()=> {
             datatable.ngDoCheck();
             datatable.sortBy = "id";
             datatable.ngOnChanges({
-                sortBy: new SimpleChange(null, datatable.sortBy)
+                sortBy: new SimpleChange(null, datatable.sortBy, true)
             });
             datatable.ngDoCheck();
             expect(datatable.sortOrder).toEqual("asc");
@@ -184,8 +184,8 @@ describe("DataTable directive tests", ()=> {
             datatable.sortBy = "id";
             datatable.sortOrder = "bulb";
             datatable.ngOnChanges({
-                sortBy: new SimpleChange(null, datatable.sortBy),
-                sortOrder: new SimpleChange(null, datatable.sortOrder)
+                sortBy: new SimpleChange(null, datatable.sortBy, true),
+                sortOrder: new SimpleChange(null, datatable.sortOrder, true)
             });
             datatable.ngDoCheck();
             expect(datatable.sortOrder).toEqual("asc");
@@ -205,7 +205,7 @@ describe("DataTable directive tests", ()=> {
             });
             datatable.ngDoCheck();
             datatable.sortOrder = "desc";
-            datatable.ngOnChanges({sortOrder: new SimpleChange(null, datatable.sortOrder)});
+            datatable.ngOnChanges({sortOrder: new SimpleChange(null, datatable.sortOrder, true)});
             datatable.ngDoCheck();
             expect(datatable.data).toEqual(datatable.inputData);
         });
@@ -230,7 +230,7 @@ describe("DataTable directive tests", ()=> {
             });
             done();
             datatable.sortOrder = "bulb";
-            datatable.ngOnChanges({sortOrder: new SimpleChange(null, datatable.sortOrder)});
+            datatable.ngOnChanges({sortOrder: new SimpleChange(null, datatable.sortOrder, true)});
             datatable.ngDoCheck();
         });
         // Wywołanie outputa gdy zmiana z innej strony
@@ -276,7 +276,7 @@ describe("DataTable directive tests", ()=> {
                 {name: 'Claire', age: 7},
                 {name: 'Anna', age: 12}
             ];
-            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData)});
+            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData, true)});
             datatable.setSort(['name', 'age'], "asc");
             datatable.ngDoCheck();
 
@@ -298,7 +298,7 @@ describe("DataTable directive tests", ()=> {
                 {name: 'Claire', city: {zip: '11111'}},
                 {name: 'Anna', city: {zip: '21111'}}
             ];
-            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData)});
+            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData, true)});
             datatable.setSort("city.zip", "asc");
             datatable.ngDoCheck();
 
@@ -316,7 +316,7 @@ describe("DataTable directive tests", ()=> {
     describe("data change", ()=> {
         it("should refresh data when inputData change", ()=> {
             let newData = [{id: 5, name: 'Ðrone'}, {id: 4, name: 'Ananas'}];
-            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData)});
+            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData, true)});
             datatable.ngDoCheck();
             expect(datatable.data).toEqual([{id: 5, name: 'Ðrone'}, {id: 4, name: 'Ananas'}]);
         });
@@ -348,7 +348,7 @@ describe("DataTable directive tests", ()=> {
                 done();
             });
             let newData = [{id: 5, name: 'Ðrone'}, {id: 4, name: 'Ananas'}];
-            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData)});
+            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData, true)});
             datatable.ngDoCheck();
         });
 
@@ -385,7 +385,7 @@ describe("DataTable directive tests", ()=> {
             datatable.ngDoCheck();
 
             let newData = [{id: 5, name: 'Ðrone'}, {id: 4, name: 'Ananas'}];
-            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData)});
+            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData, true)});
             datatable.ngDoCheck();
             expect(datatable.data).toEqual(newData);
         });
@@ -407,7 +407,7 @@ describe("DataTable directive tests", ()=> {
             datatable.ngDoCheck();
 
             let newData = [{id: 5, name: 'Ðrone'}, {id: 1, name: 'Duck'}, {id: 4, name: 'Ananas'}];
-            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData)});
+            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData, true)});
             datatable.ngDoCheck();
             expect(datatable.data).toEqual([{id: 1, name: 'Duck'}]);
         });
@@ -437,7 +437,7 @@ describe("DataTable directive tests", ()=> {
             datatable.ngDoCheck();
 
             let newData = [];
-            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData)});
+            datatable.ngOnChanges({inputData: new SimpleChange(datatable.inputData, newData, true)});
             datatable.ngDoCheck();
             expect(datatable.activePage).toEqual(1);
         });
